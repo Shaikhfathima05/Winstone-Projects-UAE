@@ -4,13 +4,24 @@
 
    document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. Navbar Scroll Effect
+    // 1. Navbar Scroll Effect + Hero Video Parallax
     const navbar = document.getElementById('navbar');
+    const heroVideo = document.querySelector('.hero-video');
+
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+        const scrollY = window.scrollY;
+
+        // Navbar
+        if (scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
+        }
+
+        // Hero video parallax: shift video up as user scrolls down
+        if (heroVideo) {
+            const parallaxOffset = scrollY * 0.3; // subtle 30% speed
+            heroVideo.style.transform = `scale(1.05) translateY(${parallaxOffset}px)`;
         }
     });
 
